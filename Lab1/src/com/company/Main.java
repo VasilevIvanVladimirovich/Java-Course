@@ -1,14 +1,7 @@
 package com.company;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-/*
- Задание
-•	Напишите программу, выводящую в консоль календарь на текущий год
-•	Дополнительно: первый день недели должен указываться через параметр командной строки
-  */
 public class Main {
     public static void main(String[] args) {
         GregorianCalendar еxperimentalCalendar = new GregorianCalendar(); //Определеяем текущий год
