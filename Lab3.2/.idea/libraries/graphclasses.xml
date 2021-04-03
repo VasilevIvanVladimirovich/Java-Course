@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="graphclasses">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Lab3.1/out/graphclasses.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
