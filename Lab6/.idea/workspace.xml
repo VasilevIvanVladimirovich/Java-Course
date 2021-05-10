@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e217642d-026b-4aee-be3f-c3f9b75d22cf" name="Default Changelist" comment="" />
+    <list default="true" id="1a4a87e0-2e63-487d-8dbd-42db60d26c24" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1s1QBdO8vQ9dLOXo1i4ELT8UGKv" />
+  <component name="ProjectId" id="1sLMqmGebtTODkJVrP85O7Fim79" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,11 +28,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Lab5" />
+    <configuration name="server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Server.Server" />
+      <module name="Lab6" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -41,13 +55,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e217642d-026b-4aee-be3f-c3f9b75d22cf" name="Default Changelist" comment="" />
-      <created>1620037485350</created>
+      <changelist id="1a4a87e0-2e63-487d-8dbd-42db60d26c24" name="Default Changelist" comment="" />
+      <created>1620647612376</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1620037485350</updated>
-      <workItem from="1620037487141" duration="11191000" />
-      <workItem from="1620637645691" duration="4457000" />
+      <updated>1620647612376</updated>
+      <workItem from="1620647614223" duration="7684000" />
     </task>
     <servers />
   </component>
@@ -64,6 +77,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
