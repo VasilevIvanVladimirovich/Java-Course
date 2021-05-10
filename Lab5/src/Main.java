@@ -1,78 +1,57 @@
 import java.io.*;
+import java.util.Vector;
 
 public class Main {
-    public static void main(String[] args) {
-        double[] doubleValue = new double[361];
-        double[] doubleValue_read = new double[361];
-        double[] doubleValue_read_2 = new double[361];
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         String out;
-        try {
-            PrintWriter writer_sin = new PrintWriter("date/sin.txt");
-            for (int i = 0; i <= 360; i++) {
-                out = "";
-                out += Math.sin(i) + "\n";
-                writer_sin.write(out);
-            }
-            writer_sin.flush(); //сбрасывает буфер
-            writer_sin.close();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-            System.out.print("Ошибка файла");
+
+        Vector<Double> doubleValue = new Vector<Double>();
+
+        PrintWriter writer_sin = new PrintWriter("date/sin.txt");
+        for (int i = 0; i <= 360; i++) {
+            out = "";
+            out += Math.sin(i) + "\n";
+            writer_sin.write(out);
         }
-
-        try {
-            BufferedReader buff_reader_sin = new BufferedReader(new FileReader("date/sin.txt"));
-            String line;
-            for (int i = 0; i <= 360; i++) {
-                line = buff_reader_sin.readLine();
-                doubleValue[i] = Double.parseDouble(line);
-            }
-            buff_reader_sin.close();
-            BufferedReader buff_reader_input = new BufferedReader(new FileReader("date/input.txt"));
-            line = buff_reader_input.readLine();
-            System.out.print("Sin " + line + " = " + doubleValue[Integer.parseInt(line)]);
-            buff_reader_input.close();
+        writer_sin.flush(); //сбрасывает буфер
+        writer_sin.close();
 
 
-            File file_sin2 = new File("date/sin2.dat");//сериализация для всего массива целиком
-            FileOutputStream file = new FileOutputStream(file_sin2);
-            ObjectOutputStream outt = new ObjectOutputStream(file);
-            outt.writeObject(doubleValue);
-            outt.close();
-            file.close();
-
-            FileInputStream filee = new FileInputStream(file_sin2);//десериализация для всего массива целиком
-            ObjectInputStream in = new ObjectInputStream(filee);
-
-            try {
-                doubleValue_read = (double[]) in.readObject();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            File file_sin2_2 = new File("date/sin2.dat");           //серриализация поотдельности
-            FileOutputStream file_2 = new FileOutputStream(file_sin2_2);
-            ObjectOutputStream outt_2 = new ObjectOutputStream(file_2);
-
-            for (int i = 0; i <= 360; i++) {
-                outt_2.writeDouble(doubleValue[i]);
-            }
-            outt_2.close();
-            file_2.close();
-
-            FileInputStream filee_2 = new FileInputStream(file_sin2_2);     //десериализация Для массива по отдельности
-            ObjectInputStream in_2 = new ObjectInputStream(filee_2);
-
-            /*for (int i = 0; i <= 360; i++) doubleValue_read_2[i] = Double.parseDouble(String.valueOf(in_2.read()));*/
-            for (int i = 0; i <= 360; i++) doubleValue_read_2[i] = Double.parseDouble(String.valueOf(in_2.read()));
-            System.out.println("\n" + "Целиком:" + "\t\t\t\t" + "По отдельности");
-            for (int i = 0; i < 100; i++) {
-                System.out.println(doubleValue_read[i] + "\t\t\t\t" + doubleValue_read_2[i]);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        BufferedReader buff_reader_sin = new BufferedReader(new FileReader("date/sin.txt"));
+        String line;
+        for (int i = 0; i <= 360; i++) {
+            line = buff_reader_sin.readLine();
+            doubleValue.add(Double.parseDouble(line));
         }
+        buff_reader_sin.close();
+        BufferedReader buff_reader_input = new BufferedReader(new FileReader("date/input.txt"));
+        line = buff_reader_input.readLine();
+        System.out.print("Sin " + line + " = " + doubleValue.elementAt(Integer.parseInt(line)) + "\n");
+        buff_reader_input.close();
+
+//Процесс сериализации
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("date/sin2.dat"));
+        objectOutputStream.writeObject(doubleValue);
+        objectOutputStream.close();
+
+//процесс десириализации
+        Vector<Double> vector = new Vector<Double>();
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("date/sin2.dat"));
+        Object readedValue = objectInputStream.readObject();
+        vector = (Vector<Double>) readedValue;
+        System.out.println(vector);
     }
 
 }
+
+
+//PrintWriter - печатает отформатированные представления объектов в поток вывода текста.
+// Этот класс реализует все методы печати, которые находятся в printstream.
+
+//BufferedReader оборачивает внутри него объект Reader,
+// который автоматически считывает данные из источника (например, файла)
+// и сохраняет их в buffer (буфер) BufferedReader.
+
+// Для сериализации объектов в поток используется класс ObjectOutputStream.
+
+// Класс ObjectInputStream отвечает за обратный процесс - чтение ранее сериализованных данных из потока
