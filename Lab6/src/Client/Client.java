@@ -2,65 +2,39 @@ package Client;
 
 import java.net.*;
 import java.io.*;
+import java.util.Vector;
+import java.util.stream.Stream;
+
+import org.jsoup.*;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class Client {
 
-    public static void main(String[] args) throws IOException,InterruptedException {
-        String url;
-        String proxyAddress;
-        int proxyPort;
-        String ansfer;
+    private static URL urlAddress;
+    private static String addressServer;
+    private static String portServer;
 
-        if (args.length < 3) {
-            System.out.println("Not enough arguments:" + "1 - URL, " +
-                    "2 - addr proxy, 3 - port proxy");
-        }
-        else {
-            url = args[0];
-            proxyAddress = args[1];
-            proxyPort = Integer.parseInt(args[2]);
+    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
+        urlAddress = new URL(args[0]);
+        addressServer = args[1];
+        portServer = args[2];
+        Socket s = new Socket(addressServer, Integer.parseInt(portServer));
 
-            try(Socket socket = new Socket(proxyAddress, proxyPort);
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
+        PrintWriter pr = new PrintWriter(s.getOutputStream()); //поток вывода на сервер
+        pr.println(urlAddress);
+        pr.flush();
+        InputStreamReader inserver = new InputStreamReader(s.getInputStream());
+        BufferedReader in = new BufferedReader(inserver);
 
-                PrintWriter out = new PrintWriter(
-                        socket.getOutputStream(), true))
+        String site="";
+        String line = null;
+        while ((line = in.readLine()) != null) {
             {
-                System.out.println("Client connected to socket.");
-
-                out.println("GET " + url + " HTTP/1.0");
-                out.println();
-                out.flush();
-                System.out.println("Client sent url " + url + " to server.");
-
-
-                while(!socket.isOutputShutdown()){
-                    ansfer = in.readLine();
-                    if (ansfer == null || ansfer.equalsIgnoreCase("End!") )
-                    {
-                        out.println("End!");
-                        out.flush();
-                        socket.close();
-                        break;
-                    }
-                    if (ansfer.equalsIgnoreCase("Page not found!")){
-                        out.println("Page not found!");
-                        out.flush();
-                        socket.close();
-                        break;
-                    }
-                    System.out.println(ansfer);
-                }
-
-                System.out.println("\nClosing connections " +
-                        "& channels on client side - DONE.");
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-                System.out.println("Wrong proxy address or port!");
+                site += line + "\n";
             }
         }
+        in.close();
+        System.out.print(site);
     }
 }

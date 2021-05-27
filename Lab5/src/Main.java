@@ -6,7 +6,7 @@ public class Main {
         String out;
 
         Vector<Double> doubleValue = new Vector<Double>();
-
+//записываем синусы в поток PrintWriter
         PrintWriter writer_sin = new PrintWriter("date/sin.txt");
         for (int i = 0; i <= 360; i++) {
             out = "";
@@ -14,16 +14,17 @@ public class Main {
             writer_sin.write(out);
         }
         writer_sin.flush(); //сбрасывает буфер
-        writer_sin.close();
+        writer_sin.close(); //закрываем поток
 
-
+//открываем файл sin.txt, буферизирует его и построчно сохраняем в line, для вывода в консоль
         BufferedReader buff_reader_sin = new BufferedReader(new FileReader("date/sin.txt"));
         String line;
         for (int i = 0; i <= 360; i++) {
             line = buff_reader_sin.readLine();
             doubleValue.add(Double.parseDouble(line));
         }
-        buff_reader_sin.close();
+        buff_reader_sin.close(); //закрываем поток
+        //открываем файл input.txt, буферизируем текст и выводим значение синуса по углу в input.txt
         BufferedReader buff_reader_input = new BufferedReader(new FileReader("date/input.txt"));
         line = buff_reader_input.readLine();
         System.out.print("Sin " + line + " = " + doubleValue.elementAt(Integer.parseInt(line)) + "\n");

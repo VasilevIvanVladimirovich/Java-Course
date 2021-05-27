@@ -15,9 +15,9 @@ public class Main {
     System.out.println(point1.Graph());*/
 
 //////////////////////////////////////////////////////////////////////////// №1
-        /*MyWindow window = new MyWindow(new Point(1, 2, "КРасный"));
+        MyWindow window = new MyWindow(new Point(1, 2, "КРасный"));
         System.out.println("x = " + window.getX() + "\n" + "y = " + window.getY());
-        window.moveTo(4, 2);*/
+        window.moveTo(4, 2);
 //////////////////////////////////////////////////////////////////////////// №2-3
         ArrayList<Movable> movables = new ArrayList<Movable>(4);
         movables.add(new Rectangle(11, 11, 1, 1, "Чёрный"));
@@ -31,6 +31,7 @@ public class Main {
             System.out.println("Error while swapping coordinates.");
             ex.printStackTrace();
         }
+
         for (Movable i : movables) {
             try {
                 swapXY(movables.get(movables.indexOf(i)));
